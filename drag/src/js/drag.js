@@ -17,7 +17,8 @@ function unbindDocument(){
 }
 
 function start(triggerElement) {
-
+    const startPoint = triggerElement.getBoundingClientRect();
+    const startProps = window.getComputedStyle(triggerElement);
 }
 
 function mouseMove() {
