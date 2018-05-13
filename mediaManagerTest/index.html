@@ -12,102 +12,165 @@
             height: 100%;
             z-index: 1050;
         }
+        #controls {
+            display: none;
+        }
+        *, select option {
+            padding: 3px;
+            margin: 2px 1px;
+            font-family: Arial;
+        }
+        input, select, button, label {
+            min-width: 100px;
+            padding: 5px;
+
+        }
+        label {
+            display: inline-block;
+            min-width: 80px;
+        }
+
     </style>
     <script src="https://media-manager.wix.com/media-frame.min.js"></script>
-    <script src="https://unpkg.parastorage.com/media-manager-api@1.94.0/dist/media-manager-api.js"></script>
+
 </head>
 <body>
 <script>
-  let mediaApi;
+    let mediaApi;
 
-  function configure() {
-    const token = document.getElementById('token').value;
-    const version = document.getElementById('version').value || 'G5';
-    const language = document.getElementById('language').value || 'en';
-    const platForm = document.getElementById('platform').value;
+    function configure() {
+        const token = document.getElementById('token').value;
+        const version = document.getElementById('version').value || 'G5';
+        const language = document.getElementById('language').value || 'en';
+        const platForm = document.getElementById('platform').value;
 
-    mediaApi = MediaManagerApi.create({
-      version: version,
-      languageCode: language,
-      siteMediaToken: token,
-      origin: platForm
-    });
-  }
-
-
-  function openMedia() {
-    if (!mediaApi) {
-      configure();
+        mediaApi = MediaManagerApi.create({
+            version: version,
+            languageCode: language,
+            siteMediaToken: token,
+            origin: platForm
+        });
     }
-    const appName = document.getElementById('appName').value || 'ItaiTestPage';
-    const category = document.getElementById('category').value || 'IMAGE';
-    mediaApi.open(category, appName, {
-      onSuccess: function (data) {
-        log('Success:' + JSON.stringify(data));
-      },
-      onCancel: function (data) {
-        log('Cancel:' + (data ? JSON.stringify(data) : ' No Data'));
-      }
-    })
-  }
 
-
-  function log(text) {
-    const logLine = document.createElement('DIV');
-    logLine.appendChild(document.createTextNode(text));
-    document.getElementById('log').appendChild(logLine);
-  }
+    function openMedia() {
+        if (!mediaApi) {
+            configure();
+        }
+        const appName = document.getElementById('appName').value || 'ItaiTestPage';
+        const category = document.getElementById('category').value || 'IMAGE';
+        mediaApi.open(category, appName, {
+            onSuccess: function (data) {
+                log('Success:' + JSON.stringify(data));
+            },
+            onCancel: function (data) {
+                log('Cancel:' + (data ? JSON.stringify(data) : ' No Data'));
+            }
+        })
+    }
 
 </script>
-<div>
-    <label for='token'>Token: </label>: <input type='text' id='token'>
+<div id='controls'>
+    <div>
+        <label for='token'>Token: </label> <input type='text' id='token'>
+    </div>
+    <div>
+        <label for='language'>Language: </label> <input type='text' id='language'>
+    </div>
+    <div>
+        <label for='appName'>App Name: </label> <input type='text' id='appName'>
+    </div>
+    <div>
+        <label for='version'>Version: </label>
+        <select id='version'>
+            <option value='G5'>G5</option>
+            <option value='G6'>G6</option>
+        </select>
+    </div>
+    <div>
+        <label for='platform'>Origin: </label>
+        <select id='platform'>
+            <option value='BUSINESS_MANAGER' selected>Business Manager</option>
+            <option value='EDITOR'>Editor</option>
+        </select>
+    </div>
+    <div>
+        <label for='category'>Category: </label>
+        <select id='category'>
+            <option selected value='IMAGE'>IMAGE</option>
+            <option value='BG_IMAGE'>BG_IMAGE</option>
+            <option value='VIDEO'>VIDEO</option>
+            <option value='BG_VIDEO'>BG_VIDEO</option>
+            <option value='MUSIC'>MUSIC</option>
+            <option value='DOCUMENT'>DOCUMENT</option>
+            <option value='VECTOR_ART'>VECTOR_ART</option>
+            <option value='FLASH'>FLASH</option>
+            <option value='WIX_MUSIC'>WIX_MUSIC</option>
+            <option value='ART_STORE_IMAGE'>ART_STORE_IMAGE</option>
+            <option value='DIGITAL_PRODUCT_IMAGE'>DIGITAL_PRODUCT_IMAGE</option>
+            <option value='DIGITAL_PRODUCT_VIDEO'>DIGITAL_PRODUCT_VIDEO</option>
+            <option value='DIGITAL_PRODUCT_MUSIC'>DIGITAL_PRODUCT_MUSIC</option>
+            <option value='DIGITAL_PRODUCT_DOCUMENT'>DIGITAL_PRODUCT_DOCUMENT</option>
+            <option value='DIGITAL_PRODUCT_ZIP'>DIGITAL_PRODUCT_ZIP</option>
+            <option value='ICON_DOCUMENT'>ICON_DOCUMENT</option>
+            <option value='ICON_SOCIALC'>ICON_SOCIAL</option>
+            <option value='ICON_FAVICON'>ICON_FAVICON</option>
+        </select>
+    </div>
+    <div>
+        <button onclick='openMedia()'>Open Media Manager</button>
+    </div>
 </div>
-<div>
-    <label for='language'>Language: </label>: <input type='text' id='language'>
-</div>
-<div>
-    <label for='appName'>App Name: </label>: <input type='text' id='appName'>
-</div>
-<div>
-    <label for='version'>Version: </label>:
-    <select id='version'>
-        <option value='G5'>G5</option>
-        <option value='G6'>G6</option>
-    </select>
-</div>
-<div>
-    <label for='platform'>Origin: </label>:
-    <select id='platform'>
-        <option value='BUSINESS_MANAGER' selected>Business Manager</option>
-        <option value='EDITOR'>Editor</option>
-    </select>
-</div>
-<div>
-    <label for='category'>Category: </label>
-    <select id='category'>
-        <option selected value='IMAGE'>IMAGE</option>
-        <option value='BG_IMAGE'>BG_IMAGE</option>
-        <option value='VIDEO'>VIDEO</option>
-        <option value='BG_VIDEO'>BG_VIDEO</option>
-        <option value='MUSIC'>MUSIC</option>
-        <option value='DOCUMENT'>DOCUMENT</option>
-        <option value='VECTOR_ART'>VECTOR_ART</option>
-        <option value='FLASH'>FLASH</option>
-        <option value='WIX_MUSIC'>WIX_MUSIC</option>
-        <option value='ART_STORE_IMAGE'>ART_STORE_IMAGE</option>
-        <option value='DIGITAL_PRODUCT_IMAGE'>DIGITAL_PRODUCT_IMAGE</option>
-        <option value='DIGITAL_PRODUCT_VIDEO'>DIGITAL_PRODUCT_VIDEO</option>
-        <option value='DIGITAL_PRODUCT_MUSIC'>DIGITAL_PRODUCT_MUSIC</option>
-        <option value='DIGITAL_PRODUCT_DOCUMENT'>DIGITAL_PRODUCT_DOCUMENT</option>
-        <option value='DIGITAL_PRODUCT_ZIP'>DIGITAL_PRODUCT_ZIP</option>
-        <option value='ICON_DOCUMENT'>ICON_DOCUMENT</option>
-        <option value='ICON_SOCIALC'>ICON_SOCIAL</option>
-        <option value='ICON_FAVICON'>ICON_FAVICON</option>
-    </select>
-</div>
-<div>
-    <button onclick='openMedia()'>Open Media Manager</button>
-</div>
-<div id='log'></div>
+<fieldset id='log'>
+    <legend>Log</legend>
+</fieldset>
+<script>
+
+    function log(text) {
+        const logLine = document.createElement('DIV');
+        logLine.appendChild(document.createTextNode(text));
+        document.getElementById('log').appendChild(logLine);
+    }
+
+    function loadWowMediaManager(version) {
+        let base = 'https://unpkg.parastorage.com/media-manager-api@{version}/dist/media-manager-api.js';
+        const loadingVersion = base.replace('{version}', version);
+        log('Loading ' + version + '  version. According to version={VERSION}');
+        addScriptToPage(loadingVersion, showControls);
+    }
+
+    function showControls() {
+        document.getElementById('controls').setAttribute('style', 'display:block;');
+    }
+
+    function addScriptToPage(url, callback) {
+        const scr = document.createElement('script');
+        scr.src = url;
+        scr.onload = function () {
+            callback();
+        };
+        scr.onerror = function () {
+            console.error('failed to load ' + url);
+        };
+        document.head.appendChild(scr);
+    }
+
+    let search = {
+        version: '1.97.0'
+    };
+
+    function getSearch() {
+        const queries = location.search.split('&');
+        queries.forEach((query) => {
+            const pair = query.split('=');
+            if (pair.length > 1) {
+                search[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+            }
+        });
+    }
+
+    getSearch();
+
+    loadWowMediaManager(search.version);
+</script>
 </body>
 </html>
