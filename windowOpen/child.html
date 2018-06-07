@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Child Window</title>
+    <script>
+        function closeWindow(){
+          window.close();
+        }
+        if(location.search.indexOf("close=true")){
+            setTimeout(closeWindow, 2000);
+        }
+    </script>
+</head>
+<body>
+    <button onclick="closeWindow()">Close This Window</button>
+</body>
+</html>

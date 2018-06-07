@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang='en'>
+    <meta charset='UTF-8'>
+    <link rel='stylesheet' type='text/css' href='css/default.css'/>
+    <script src='js/utils/idGenerator.js'></script>
+    <script src='js/utils/invocationRunner.js'></script>
+    <script src='js/parent/extractFunctionScope.js'></script>
+    <script src='js/parent/parentCore.js'></script>
+    <script src='js/parent/workerFactory.js'></script>
+    <script src='js/workers/workerCore.js'></script>
+    <script src='js/app/moveBallApp.js'></script>
+    <title>Worker Test</title>
+</head>
+<body>
+<script>
+  let myWorker = workerFactory.create({
+    handler: messagesAPI.messageRouter,
+    func: workerCore
+  });
+  myWorker.init();
+  myWorker.sendMessage({'Hello': 'World'});
+</script>
+<div id='logger'></div>
+</body>
+</html>

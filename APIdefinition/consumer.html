@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API consumer</title>
+    <script type="text/javascript" src="API.js"></script>
+</head>
+<body>
+    <script>
+        function replacer(input){
+          var data = JSON.stringify(input);
+          var res = data.replace("Blonde", "Black");
+          return JSON.parse(res);
+        }
+        console.log(getData());
+        console.log(computeDataDiff({id:1}, replacer));
+    </script>
+</body>
+</html>

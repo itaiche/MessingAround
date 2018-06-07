@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "id": "TestAPI",
+  "type": "object",
+  "definitions": {
+    "IDataFilter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "number"
+        },
+        "query": {
+          "type": "string"
+        }
+      },
+      "IDataResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "getData": {
+      "type": "method",
+      "properties": {
+        "params": {
+          "$ref": "#/definitions/IDataFilter",
+          "required" : true
+        },
+        "result": {
+          "$ref": "#/definitions/IDataResponse"
+        }
+      }
+    },
+    "computeDataDiff": {
+      "type": "method",
+      "properties": {
+        "params": {
+          "type": "array",
+          "items" : [
+            {
+              "$ref": "#/definitions/IDataFilter",
+              "required" : true
+            },
+            {
+              "type" : "method"
+            }
+          ]
+        },
+        "result": {
+          "$ref": "#/definitions/IDataResponse"
+        }
+      }
+    }
+  }
+}

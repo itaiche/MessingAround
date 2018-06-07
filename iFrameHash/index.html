@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function randomizeHash() {
+            const frame = document.getElementsByTagName("iframe")[0];
+            frame.src = changeHash(frame.src , new Date().getMilliseconds());
+        }
+
+        function changeHash(URL, newHash) {
+            const hashIndex = URL.indexOf("#");
+            if (hashIndex > 0) {
+                URL = URL.substr(0, hashIndex);
+            }
+            return URL + "#" + newHash;
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <button onclick="randomizeHash()">Gimme a new Hash!!!</button>
+    </div>
+    <iframe src="child.html" style="border:solid 1px black;width:450px;height: 300px;"></iframe>
+</body>
+</html>

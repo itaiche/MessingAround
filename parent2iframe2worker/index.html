@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parent</title>
+    <style>
+        #sender {
+            display: none;
+        }
+        .created #sender{
+            display: block;
+        }
+        .created #creator {
+            display: none;
+        }
+    </style>
+    <script src="js/pm.js"></script>
+    <script type="text/javascript">
+         window.addEventListener("load", function(){
+           getChannels();
+         });
+
+         function getChannels(){
+           const childFrame = document.getElementsByTagName("IFRAME")[0];
+           createChannel("appDefId", childFrame).then((send, listen)=>{
+
+           });
+         }
+    </script>
+</head>
+<body>
+    <div id="creator">
+        <button>Create Channel</button>
+    </div>
+    <div id="sender">
+        <input type="text">
+        <button>Send Message</button>
+    </div>
+    <iframe src="child.html"></iframe>
+    <div id="log">
+
+    </div>
+</body>
+</html>

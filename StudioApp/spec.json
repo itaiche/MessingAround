@@ -1,0 +1,27 @@
+//{
+//  "widgets" : [
+//    {
+//      "structure" : {
+//        "root": {
+//          "children" : {
+//
+//          }
+//        }
+//      }
+//    }
+//  ]
+//}
+
+
+{
+  "widget" : {
+    "apps" : [
+      { "id" : "x" }
+    ],
+    "dom" : [
+      { "app" : "randomNUmber" }
+    ]
+  }
+
+
+}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parent Window</title>
+    <script>
+        function openChildWindow(selfClosing) {
+            window.open("child.html" + (selfClosing ? "?close=true" : ""), "_child");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="openChildWindow()">Open a new window</button>
+    <button onclick="openChildWindow(true)">Open a self closing window</button>
+</body>
+</html>

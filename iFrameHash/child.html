@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.addEventListener("load", () => {
+            addLineToLog("Loaded at:" +  new Date().toLocaleTimeString() + " current Hash:" + window.location.hash);
+        });
+        window.addEventListener("hashchange" ,(e)=>{
+            addLineToLog("New Hash!!!" + " " + window.location.hash);
+        });
+        function addLineToLog(text){
+            const DIV = document.createElement("DIV");
+            DIV.innerHTML = text;
+            document.body.appendChild(DIV);
+        }
+    </script>
+</head>
+<body>
+    Child iFrame
+</body>
+</html>

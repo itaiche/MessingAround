@@ -1,0 +1,13 @@
+{
+  "name": "SampleAPIDefintion",
+  "version": "0.0.1",
+  "dependencies": {
+    "typescript": "~2.5.3"
+  },
+  "devDependencies": {
+    "typedoc" : "latest",
+    "@types/node": "latest",
+    "ts-node" : "latest",
+    "tslint": "latest"
+  }
+}
